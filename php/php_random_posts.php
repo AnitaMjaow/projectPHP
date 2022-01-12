@@ -24,18 +24,27 @@ foreach ($posts as $post) {
     // Vi vill hämta alla kommentarer för detta inlägg ($post) (post_id = 2).
     $sql_select_posts = "SELECT * FROM comments WHERE post_id = $post->post_id";
     $comments = $pdo->query($sql_select_posts)->fetchAll(PDO::FETCH_CLASS);
+
+    $sql_get_username = "SELECT * FROM users INNER JOIN posts ON users.user_id = posts.user_id WHERE posts.post_id = $post->post_id";
+    $user = $pdo->query($sql_get_username)->fetchAll(PDO::FETCH_CLASS);
+    $user = array_values($user)[0];
 ?>
     <div class='gallery-item'>
-        <h2> <?php echo $post->title ?> </h2><br>
-        <img class='profile-img' src='<?php echo $post->picture ?>' width='300' height='300'>
-        <p> <?php echo $post->content ?></p>
-        <?php foreach ($comments as $comment) { ?>
-            <div class="comment"><?php echo $comment->content ?></div>
-        <?php } ?>
+        <div class="top">
+            <h1 style="display: inline-block;"><?php echo $user->username ?></h1>
+            <h2> <?php echo $post->title ?> </h2>
+        </div>
+        <img class='profile-img' src='<?php echo $post->picture ?>'>
+        <p class="text"> <?php echo $post->content ?></p>
+        <div class="comments">
+            <?php foreach ($comments as $comment) { ?>
+                <div class="comment"><?php echo $comment->content ?></div>
+            <?php } ?>
+        </div>
         <form method="post">
             <input type="hidden" name="post_id" value="<?php echo $post->post_id ?>" />
-            Comment: <input type="text" name="comment"></input>
-            <input type="submit" name="submit" value="Submit">
+            Add a comment: <input class="comment" type="text" name="comment"></input>
+            <input class="submit" type="submit" name="submit" value="Submit">
         </form>
     </div>
 <?php } ?>

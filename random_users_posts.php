@@ -11,6 +11,7 @@ require_once 'php/php_init.php';
   <title>Random posts</title>
   <!-- STYLING FÖR SIDAN!!!!!!! -->
   <link href="css/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/posts.css">
 </head>
 
 <body>
