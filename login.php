@@ -1,9 +1,11 @@
 <?php
+require_once 'php/php_init.php';
 require_once 'php/php_login.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +15,12 @@ require_once 'php/php_login.php';
     <link href="css/login-register.css" rel="stylesheet">
 
 </head>
+
 <body class="login-body">
 
     <main class="login-main">
 
-    <img src="logo.png" alt="logo">
+        <img src="logo.png" alt="logo">
 
         <h3 class="login-second-header">Login</h3>
 
@@ -45,4 +48,5 @@ require_once 'php/php_login.php';
     </main>
 
 </body>
+
 </html>

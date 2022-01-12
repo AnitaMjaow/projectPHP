@@ -1,9 +1,11 @@
 <?php
-    require_once 'php/php_register.php';
+require_once 'php/php_init.php';
+require_once 'php/php_register.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,13 +15,14 @@
     <link href="css/login-register.css" rel="stylesheet">
 
 </head>
+
 <body class="register-body">
 
     <main class="register-main">
 
         <h1 class="register-header">Register</h1>
 
-        <form class="register-form" method="post" action="register.php" >
+        <form class="register-form" method="post" action="register.php">
 
             <div class="register-input">
                 <div>
@@ -62,4 +65,5 @@
     </main>
 
 </body>
+
 </html>
