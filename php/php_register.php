@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
         $error = 'Username has to be at least 5 letters and a maximum of 15 letters';
     }
 
-    if (strlen($password) >= 20) {
+    if (strlen($regPassword) >= 20) {
         $error = 'Password has to be at least 5 characters and a maximum of 20 characters';
     }
 
@@ -29,7 +29,6 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($error)) {
-        $pdo = connectToDB();
         $sql = "SELECT * FROM users WHERE username = '$regUsername'";
         $sql_result = $pdo->query($sql);
         $result = count($sql_result->fetchAll());
