@@ -15,6 +15,7 @@ if (handle_user_not_logged_in()) {
   <title>Homepage</title>
   <!-- STYLING FÖR SIDAN!!!!!!! -->
   <link href="css/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/posts.css">
 </head>
 
 <body>

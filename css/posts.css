@@ -66,9 +66,51 @@ header {
 }
 
 .gallery-item > form > .comment {
-  margin-left: 1em;
+  width: 100%;
+  margin-right: auto;
+  border: none;
+  border: solid 1px #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5em;
 }
 
 .gallery-item > form > .submit {
-  margin-left: auto;
+  margin-left: 1em;
+  border-radius: 0.5rem;
+  border: solid 1px #ccc;
+  padding: 0.25em 0.5em;
+}
+
+.gallery-item > form > .submit:hover {
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
+
+.comment-container {
+  display: flex;
+}
+
+.comment-container > .user-comment {
+  width: 100%;
+  padding-bottom: 0.5em;
+}
+
+.comment-container > .delete-form > .delete {
+  width: fit-content;
+  height: fit-content;
+  background: 0;
+  border: 0;
+  cursor: pointer;
+  color: red;
+  padding: 0 2px;
+  margin: 0;
+  margin-left: 1em;
+  font-size: 0.85em;
+  border: 1px solid red;
+  border-radius: 5px;
+}
+
+.comment-container > .delete-form > .delete:hover {
+  background-color: red;
+  color: white;
 }

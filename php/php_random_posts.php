@@ -5,8 +5,9 @@ $sql->execute();
 $posts = $sql->fetchAll(PDO::FETCH_CLASS);
 
 if (is_post_request()) {
-    $comment = $_POST['comment'];
-    if (isset($comment)) {
+    if (array_key_exists('add_comment', $_POST)) {
+        $comment = $_POST['comment']; // The actual comment
+        // Spara inte kommentaren i databasen ifall den är tom.
         if (!empty($comment)) {
             $post_id = $_POST['post_id'];
             // spara kommentaren i databasen.
@@ -41,15 +42,21 @@ foreach ($posts as $post) {
                 $sql_get_user_comment = "SELECT * FROM comments INNER JOIN users ON users.user_id = comments.user_id WHERE comments.post_id = $comment->post_id";
                 $user = $pdo->query($sql_get_user_comment)->fetchAll(PDO::FETCH_CLASS);
                 $user = array_values($user)[0];
+
             ?>
-                <div class="comment"><span style="font-weight: bold;"><?php echo  $user->username; ?></span>
-                    <?php echo $comment->content ?></div>
+                <div class="comment-container">
+                    <div class="user-comment">
+                        <span style="font-weight: bold;"><?php echo  $user->username; ?></span>
+                        <?php echo $comment->content ?>
+                    </div>
+                </div>
             <?php } ?>
+
         </div>
         <form method="post">
             <input type="hidden" name="post_id" value="<?php echo $post->post_id ?>" />
-            Add a comment: <input class="comment" type="text" name="comment"></input>
-            <input class="submit" type="submit" name="submit" value="Submit">
+            <input class="comment" type="text" name="comment" maxlength="100" placeholder="Add a comment..."></input>
+            <input class="submit" type="submit" name="add_comment" value="Send">
         </form>
     </div>
 <?php } ?>
