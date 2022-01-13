@@ -33,8 +33,8 @@ foreach ($posts as $post) {
     $sql_select_posts = "SELECT * FROM comments WHERE post_id = $post->post_id";
     $comments = $pdo->query($sql_select_posts)->fetchAll(PDO::FETCH_CLASS);
 
-    $sql_get_username = "SELECT * FROM users INNER JOIN posts ON users.user_id = posts.user_id WHERE posts.post_id = $post->post_id";
-    $user = $pdo->query($sql_get_username)->fetchAll(PDO::FETCH_CLASS);
+    $sql_get_user = "SELECT * FROM users INNER JOIN posts ON users.user_id = posts.user_id WHERE posts.post_id = $post->post_id";
+    $user = $pdo->query($sql_get_user)->fetchAll(PDO::FETCH_CLASS);
     $user = array_values($user)[0];
 ?>
     <div class='gallery-item'>
@@ -46,10 +46,9 @@ foreach ($posts as $post) {
         <p class="text"> <?php echo $post->content ?></p>
         <div class="comments">
             <?php foreach ($comments as $comment) {
-                $sql_get_user_comment = "SELECT * FROM comments INNER JOIN users ON users.user_id = comments.user_id WHERE comments.post_id = $comment->post_id";
-                $user = $pdo->query($sql_get_user_comment)->fetchAll(PDO::FETCH_CLASS);
+                $sql_get_commenting_user = "SELECT users.username FROM users INNER JOIN comments ON users.user_id = comments.user_id WHERE comments.comment_id = $comment->comment_id";
+                $user = $pdo->query($sql_get_commenting_user)->fetchAll(PDO::FETCH_CLASS);
                 $user = array_values($user)[0];
-
             ?>
                 <div class="comment-container">
                     <div class="user-comment">
