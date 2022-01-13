@@ -37,8 +37,13 @@ foreach ($posts as $post) {
         <img class='profile-img' src='<?php echo $post->picture ?>'>
         <p class="text"> <?php echo $post->content ?></p>
         <div class="comments">
-            <?php foreach ($comments as $comment) { ?>
-                <div class="comment"><?php echo $comment->content ?></div>
+            <?php foreach ($comments as $comment) {
+                $sql_get_user_comment = "SELECT * FROM comments INNER JOIN users ON users.user_id = comments.user_id WHERE comments.post_id = $comment->post_id";
+                $user = $pdo->query($sql_get_user_comment)->fetchAll(PDO::FETCH_CLASS);
+                $user = array_values($user)[0];
+            ?>
+                <div class="comment"><span style="font-weight: bold;"><?php echo  $user->username; ?></span>
+                    <?php echo $comment->content ?></div>
             <?php } ?>
         </div>
         <form method="post">
